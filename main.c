@@ -6,7 +6,7 @@
 /*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:55:02 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/11 13:17:54 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/11 17:02:31 by pauladretta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,68 +17,19 @@
 
 int main (int argc, char **argv)
 {
-    int size;
-    int *numbers;
-    int duplicate;
-    int *sorted_array;
-    int *index_array;
-    int i;
+    t_stack *stack_a;
+    t_stack *stack_b;
     
-    size = check_str_digits_size(argc, argv);
-    if (size == 0)
-    {
-        printf("error\n");
-        return (1);
-    }
-    numbers = build_array_of_numbers(size, argc, argv);
-    if (numbers == NULL)
-    {
-        printf("error\n");
-        return (1);
-    }
-
-   
-    // int num[] = {34, 28, 0, 0, 88, 99, 67};
+    stack_a = parsing(argc, argv);
+    stack_b = get_empty_stack();
     
-    duplicate = check_for_duplicates(numbers, size);
-    if (duplicate == 0)
+    if (stack_a == NULL || stack_b == NULL)
     {
-        printf("error\n");
+        printf("Error\n");
         return (1);
     }
-
-    sorted_array = sort_array(numbers, size);
-    if (sorted_array == NULL)
-    {
-        free(numbers);
-        printf("error\n");
-        return (1);
-    }
-    i = 0;
-    printf("sorted array = {");
-    while (i < size)
-    {
-        printf("%d,", sorted_array[i]); 
-        i++;
-    }
-    printf("}\n");
-
-    index_array = assigning_index_based_on_number_size(numbers, sorted_array, size);
-    if (index_array == NULL)
-    {
-        free(numbers);
-        free(sorted_array);
-        printf("error\n");
-        return (1);
-    }
-    printf("index array = {");
-    i = 0;
-    while (i < size)
-    {
-        printf("%d,", index_array[i]);  
-        i++;  
-    }
-    printf("}\n");
+    
     return (0);
 }
 
+// TODO: from subject all functions coden (sa, ...) (guide)
