@@ -6,7 +6,7 @@
 /*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:30:11 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/10 18:31:10 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/11 13:19:37 by pauladretta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int split_strings(char *str)
     return(num_of_str);
 }
 
-int *build_array_of_numbers(int result, int argc, char **argv)
+int *build_array_of_numbers(int size, int argc, char **argv)
 {
     int *num;
     int i;
@@ -64,7 +64,7 @@ int *build_array_of_numbers(int result, int argc, char **argv)
     int k;
     char **splitted_string;
     
-    num = malloc(result * sizeof(int));
+    num = malloc(size * sizeof(int));
     if (num == NULL)
         return (NULL);
     k = 0;
@@ -83,5 +83,170 @@ int *build_array_of_numbers(int result, int argc, char **argv)
         j++;
     }
     return(num);
+    
 }
 
+int check_for_duplicates(int *array, int size)
+{
+    int i;
+    int j;
+
+    if (array == NULL)
+        return (0);
+        
+    i = 0;
+    while (i < size)
+    {
+        j = i + 1;
+        while (j < size)
+        {
+            if (array[i] == array[j]) 
+            {
+                return (0);
+            }   
+            j++; 
+        }
+        i++;
+    }
+    return (1);
+}
+
+// int *assigning_index_based_on_number_size(int *array, int size)
+// {
+//     int *index_array;
+//     int i;
+//     int j;
+
+//     if (array == NULL)
+//         return (NULL);
+
+//     index_array = malloc(size * sizeof(int));
+//     if (index_array == NULL)
+//         return (NULL);
+
+//     i = 0;
+//     while (i < size)
+//     {
+//         index_array[i] = i;
+//         i++;
+//     }
+    
+//     i = 0;
+//     while (i < size)
+//     {
+//         j = i + 1;
+//         while (j < size)
+//         {
+//             if (array[index_array[j]] < array[index_array[i]])
+//             {
+//                 ft_swap(&index_array[i], &index_array[j]);   
+//             }
+//             j++;
+//         }  
+//         i++;
+//     }
+//     return(index_array);
+// }
+
+
+int *sort_array(int *array, int size)
+{
+    int *sorted_array;
+    int i;
+
+    sorted_array = malloc(size * sizeof(int));
+    if (sorted_array == NULL)
+        return (NULL);
+
+    i = 0;
+    while (i < size)
+    {
+        sorted_array[i] = array[i];
+        i++;
+    }
+    
+    bubble_sort(sorted_array, size);
+    
+    return (sorted_array);
+}
+
+
+
+void bubble_sort(int *arr, int n)
+{
+    int i;
+    int temp;
+    int swapped;
+
+    if (arr == NULL || n <= 1)
+        return;
+    
+    swapped = 1;
+    while (swapped == 1)
+    {
+        swapped = 0;
+        i = 0;
+        while (i < n - 1)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+                swapped = 1;
+            }
+            i++;
+        }
+        n--;
+    }
+}
+
+int *assigning_index_based_on_number_size(int *array, int *sorted_array, int size)
+{
+    int *index_array;
+    int i;
+    int j;
+    
+    index_array = malloc(size * sizeof(int));
+    if (index_array == NULL)
+        return (NULL);
+        
+    i = 0;
+    while (i < size)
+    {
+        j = 0;
+        while (j < size)
+        {
+            if (array[i] == sorted_array[j])
+            {
+               index_array[i] = j;
+            }
+            j++;
+        }
+        i++;
+    }
+    return(index_array);
+}
+
+
+int check_str_digits_size(int argc, char **argv)
+{
+    int i; 
+    int size;
+    int num_of_str;
+    
+    i = 1;
+    size = 0;
+    while (i < argc)
+    {
+       num_of_str = split_strings(argv[i]);
+        
+        if (num_of_str == 0)
+        {
+            return (0);
+        }
+        size = size + num_of_str;
+        i++;
+    }
+    return(size);
+}

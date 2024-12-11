@@ -6,7 +6,7 @@
 /*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:55:02 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/10 18:37:33 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/11 13:17:54 by pauladretta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,47 +17,68 @@
 
 int main (int argc, char **argv)
 {
-    int i;
-    int num_of_str;
-    int result;
+    int size;
     int *numbers;
+    int duplicate;
+    int *sorted_array;
+    int *index_array;
+    int i;
     
-    (void)argc;
-    // int res = is_str_number(argv[1]);
-    
-    i = 1;
-    result = 0;
-    while (i < argc)
+    size = check_str_digits_size(argc, argv);
+    if (size == 0)
     {
-       num_of_str = split_strings(argv[i]);
-        
-        if (num_of_str == 0)
-        {
-            printf("error\n");
-            return (1);
-        }
-        printf("num_of_str = %d\n", num_of_str);
-        result = result + num_of_str;
-        printf(" = %d\n", result);
-        // printf("Hello World");
-        i++;
+        printf("error\n");
+        return (1);
     }
-    numbers = build_array_of_numbers(result, argc, argv);
+    numbers = build_array_of_numbers(size, argc, argv);
     if (numbers == NULL)
     {
         printf("error\n");
         return (1);
     }
 
-    int j;
-    j = 0;
-    while (j < result)
-    {
-        printf("numbers[%d] = %d\n", j, numbers[j]);
-        j++;
-    }
-    
+   
     // int num[] = {34, 28, 0, 0, 88, 99, 67};
     
+    duplicate = check_for_duplicates(numbers, size);
+    if (duplicate == 0)
+    {
+        printf("error\n");
+        return (1);
+    }
+
+    sorted_array = sort_array(numbers, size);
+    if (sorted_array == NULL)
+    {
+        free(numbers);
+        printf("error\n");
+        return (1);
+    }
+    i = 0;
+    printf("sorted array = {");
+    while (i < size)
+    {
+        printf("%d,", sorted_array[i]); 
+        i++;
+    }
+    printf("}\n");
+
+    index_array = assigning_index_based_on_number_size(numbers, sorted_array, size);
+    if (index_array == NULL)
+    {
+        free(numbers);
+        free(sorted_array);
+        printf("error\n");
+        return (1);
+    }
+    printf("index array = {");
+    i = 0;
+    while (i < size)
+    {
+        printf("%d,", index_array[i]);  
+        i++;  
+    }
+    printf("}\n");
     return (0);
 }
+
