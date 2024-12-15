@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
+/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:19:59 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/11 16:42:53 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/14 10:57:07 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void print_array_int(char *array_name, int *array, int size)
     }
     printf("}\n");
 }
-
 
 void print_stack(t_stack *stack)
 {

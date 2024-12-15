@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
+/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:30:11 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/11 17:02:40 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/13 14:38:46 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ int check_str_digits_size(int argc, char **argv)
 
 t_stack *parsing(int argc, char **argv) // TODO: need free function for all
 {
-     int size;
+    int size;
     int *array;
     int duplicate;
     int *sorted_array;

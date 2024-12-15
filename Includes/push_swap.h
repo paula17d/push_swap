@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
+/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:56:59 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/11 17:00:36 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/15 12:50:15 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "libft/libft.h"
 #include <stdlib.h> 
 #include <stdbool.h>
+
+#define TOP 1
+#define BOTTOM -1
 
 typedef struct s_stack
 {
@@ -29,6 +32,7 @@ typedef struct s_node
 {
     int value;
     int index;
+    struct s_node *prev;
     struct s_node *next;
 }t_node;
 
@@ -40,11 +44,17 @@ int *sort_array(int *array, int size);
 void bubble_sort(int *arr, int n);
 int *assigning_index_based_on_number_size(int *array, int *sorted_array, int size);
 int check_str_digits_size(int argc, char **argv);
-void print_array_int(char *array_name, int *array, int size); // kommentiern
+void print_array_int(char *array_name, int *array, int size); // kommentieren
 t_stack *set_stack(int *array, int *index_array, int size);
 void print_stack(t_stack *stack); // kommentieren
 t_stack *parsing(int argc, char **argv);
 t_stack *get_empty_stack();
+void swap(t_node *head);
+void sa(t_stack *stack_a);
+void sb(t_stack *stack_b);
+void ss(t_stack *stack_a, t_stack *stack_b);
+void rotate(t_stack *stack);
+
 
 #endif
 
