@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
+/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:55:02 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/11 17:02:31 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/21 05:56:43 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,29 @@ int main (int argc, char **argv)
         return (1);
     }
     
+    // pb(stack_a, stack_b);
+    // swap(stack_b);
+    // print_stack(stack_b, "stack B");
+
+    rrr(stack_a, stack_b);
+    print_stack(stack_a, "stack A");
+    print_stack(stack_b, "stack B");
+    
+
+    // rra(stack_a);
+    // print_stack(stack_a, "stack A");
+    
+    // ss(stack_a, stack_b);
+    
+    // pb(stack_a, stack_b);
+    // pb(stack_a, stack_b);
+    // print_stack(stack_a, "stack A");
+    // print_stack(stack_b, "stack B");
+    
+    // pa(stack_a, stack_b);
+    // pa(stack_a, stack_b);
+    // print_stack(stack_a, "stack A");
+    // print_stack(stack_b, "stack B");
+    
     return (0);
 }
-
-// TODO: from subject all functions coden (sa, ...) (guide)

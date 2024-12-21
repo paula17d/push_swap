@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:19:59 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/14 10:57:07 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/21 04:22:44 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,17 @@ void print_array_int(char *array_name, int *array, int size)
     printf("}\n");
 }
 
-void print_stack(t_stack *stack)
+void print_stack(t_stack *stack, char *stack_name)
 {
     int i;
     t_node *current;
-
+    printf("**********************%s************************************\n", stack_name);
     current = stack->head;
+    if (current == NULL)
+    {
+        printf("********************************************************************\n");
+        return; 
+    }
     i = 0;
     while (1)
     {
@@ -44,4 +49,5 @@ void print_stack(t_stack *stack)
             break;
         i++;
     }
+    printf("********************************************************************\n");
 }

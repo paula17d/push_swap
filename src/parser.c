@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:30:11 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/13 14:38:46 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/21 03:40:02 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,39 +110,39 @@ int check_for_duplicates(int *array, int size)
     return (1);
 }
 
-t_stack *set_stack(int *array, int *index_array, int size)
-{
-    int i;
-    t_stack *stack;
-    t_node *current;
+// t_stack *set_stack(int *array, int *index_array, int size)
+// {
+//     int i;
+//     t_stack *stack;
+//     t_node *current;
 
-    current = malloc(1 *sizeof(t_node));
-    if (current == NULL)
-        return (NULL);
-    stack = malloc(1 *sizeof(t_stack));
-    if (stack == NULL)
-        return (free(current), NULL);
-    stack->head = current;
-    stack->size = 0;
-    i = 0;
-    while (i < size)
-    {
-        current->value = array[i];
-        current->index = index_array[i];
-        if (i == size - 1)
-            current->next = NULL;
-        else
-        {
-            current->next = malloc (1 *sizeof(t_node)); // TODO: free function for all nodes
-            current = current->next;   
-        }
-        i++;
-        (stack->size)++;
-    }
-    stack->tail = current;
+//     current = malloc(1 *sizeof(t_node));
+//     if (current == NULL)
+//         return (NULL);
+//     stack = malloc(1 *sizeof(t_stack));
+//     if (stack == NULL)
+//         return (free(current), NULL);
+//     stack->head = current;
+//     stack->size = 0;
+//     i = 0;
+//     while (i < size)
+//     {
+//         current->value = array[i];
+//         current->index = index_array[i];
+//         if (i == size - 1)
+//             current->next = NULL;
+//         else
+//         {
+//             current->next = malloc (1 *sizeof(t_node)); // TODO: free function for all nodes
+//             current = current->next;   
+//         }
+//         i++;
+//         (stack->size)++;
+//     }
+//     stack->tail = current;
     
-    return (stack);
-}
+//     return (stack);
+// }
 
 int *sort_array(int *array, int size)
 {
@@ -243,7 +243,7 @@ int check_str_digits_size(int argc, char **argv)
     return(size);
 }
 
-t_stack *parsing(int argc, char **argv) // TODO: need free function for all
+t_stack *parsing(int argc, char **argv) // TODO: need free function for all // need to make smaller
 {
     int size;
     int *array;
@@ -292,7 +292,7 @@ t_stack *parsing(int argc, char **argv) // TODO: need free function for all
         free(index_array);
         return (NULL);
     }
-    print_stack(stack);
+    print_stack(stack, "stack_a");
 
     return (stack);
 }
@@ -308,5 +308,65 @@ t_stack *get_empty_stack()
     stack->head = NULL;
     stack->tail = NULL;
     stack->size = 0;
+    
+    return(stack);
+}
 
+t_node *get_node (int value, int index)
+{
+    t_node *node;
+    
+    node = malloc (1 * sizeof(t_node));
+    if (!node)
+    {
+        return (NULL);
+    } 
+
+    node->value = value;
+    node->index = index;
+    node->prev = NULL;
+    node->next = NULL;
+
+    return (node);   
+}
+
+t_stack *set_stack(int *array, int *index_array, int size)
+{
+    t_stack *stack;
+    t_node *node;
+    
+    stack = get_empty_stack();
+    if (!stack)
+    {
+        return (NULL);
+    }
+
+    while(size > 0)
+    {
+        node = get_node(array[size - 1], index_array[size - 1]);
+        if (!node)
+        {
+            return (NULL);
+        }
+        put_node_in_stack(stack, node);
+        size--;
+    }
+    return (stack);
+}
+
+void put_node_in_stack(t_stack *stack, t_node *node)
+{
+    if (stack->size == 0)
+    {
+        stack->head = node;
+        stack->tail = node;
+        (stack->size)++;
+    }
+    else
+    {
+        node->next = stack->head;
+        stack->head->prev = node;
+        stack->head = node;
+        (stack->size)++;
+    }
 }

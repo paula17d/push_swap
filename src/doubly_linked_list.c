@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 12:49:48 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/15 16:40:44 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/21 04:11:56 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,20 @@
 //     struct s_node *next;
 // }t_node;
 
-void insert_node(t_stack *stack, t_node *inserted_node, int position)
+
+void insert_node_top()
+{
+	
+}
+
+
+void insert_node_bottom()
+{
+	
+}
+
+
+void insert_node(t_stack *stack, t_node *inserted_node, int position) // in 2 aufteilen: insert_node_top & insert_node_bottom
 {	
 	if (stack->size == 0)
 	{
@@ -36,7 +49,7 @@ void insert_node(t_stack *stack, t_node *inserted_node, int position)
 	}
 	
 	// at top (head)
-	if (position == TOP)
+	else if (position == TOP)
 	{
 		inserted_node->next = stack->head;
 		stack->head->prev = inserted_node;
@@ -54,15 +67,18 @@ void insert_node(t_stack *stack, t_node *inserted_node, int position)
 	stack->size++;
 }
 
-t_node *extract_node(t_stack *stack, int position)
+t_node *extract_node(t_stack *stack, int position) // in 2 aufteilen: extract_node_top & extract_node_bottom
 {
 	// removes node from top (head) or bottom (tail) and returns it
 	t_node *extracted_node;
 	
+	extracted_node = NULL;
+
 	if (position == TOP)
 	{
 		extracted_node = stack->head;
 		stack->head = extracted_node->next;
+
 		if (stack->size == 1)
 		{
 			stack->tail = NULL;
@@ -75,10 +91,11 @@ t_node *extract_node(t_stack *stack, int position)
 	
 	else if (position == BOTTOM)
 	{
+
 		extracted_node = stack->tail;
 		stack->tail = extracted_node->prev;
 		stack->tail->next = NULL; 
-		if (stack->size == 1) // if after node removed was then one last remaining, then head and tail need to be updated
+		if (stack->size == 1)
 		{
 			stack->head = NULL;
 		}
@@ -87,7 +104,6 @@ t_node *extract_node(t_stack *stack, int position)
 			stack->tail->next = NULL;
 		}
 	}
-	
 	extracted_node->prev = NULL;
 	extracted_node->next = NULL;
 	stack->size--;
@@ -95,7 +111,7 @@ t_node *extract_node(t_stack *stack, int position)
 	return(extracted_node);
 }
 
-t_node *create_node(t_stack *stack, int value, int index)
+t_node *create_node(int value, int index)
 {
 	t_node *new_node;
 	

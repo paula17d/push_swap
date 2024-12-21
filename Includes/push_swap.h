@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:56:59 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/15 12:50:15 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/21 05:53:18 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,25 @@ int *assigning_index_based_on_number_size(int *array, int *sorted_array, int siz
 int check_str_digits_size(int argc, char **argv);
 void print_array_int(char *array_name, int *array, int size); // kommentieren
 t_stack *set_stack(int *array, int *index_array, int size);
-void print_stack(t_stack *stack); // kommentieren
+
 t_stack *parsing(int argc, char **argv);
 t_stack *get_empty_stack();
-void swap(t_node *head);
+void swap(t_stack *stack);
 void sa(t_stack *stack_a);
 void sb(t_stack *stack_b);
 void ss(t_stack *stack_a, t_stack *stack_b);
-void rotate(t_stack *stack);
+void put_node_in_stack(t_stack *stack, t_node *node);
+void pa(t_stack *stack_a, t_stack *stack_b);
+void pb(t_stack *stack_a, t_stack *stack_b);
+t_node *extract_node(t_stack *stack, int position);
+void insert_node(t_stack *stack, t_node *inserted_node, int position);
+void print_stack(t_stack *stack, char *stack_name);
+void rb(t_stack *stack_b, int print);
+void ra(t_stack *stack_a, int print);
+void rr(t_stack *stack_a, t_stack *stack_b);
+void rra(t_stack *stack_a, int print);
+void rrb(t_stack *stack_b, int print);
+void rrr(t_stack *stack_a, t_stack *stack_b);
 
 
 #endif
-
-
