@@ -3,116 +3,111 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
+/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:30:11 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/27 15:40:43 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/28 04:49:49 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/push_swap.h"
 
-int is_str_number(char *str)
+int	is_str_number(char *str)
 {
-    int i;
-    
-    if (str == NULL)
-        return (0);
-    
-    i = 0;
-    if (str != NULL && str[i] != '\0'  && str[i + 1] != '\0' && str[i] == '-')
-    {
-        i++;
-    }
-    
-    while (str != NULL && str[i] != '\0')
-    {
-        if (!(str[i] >= '0' && str[i] <= '9'))
-        {
-            return(0);
-        }
-        i++;
-    }
-    return(1);
+	int	i;
+
+	if (str == NULL)
+		return (0);
+	i = 0;
+	if (str != NULL && str[i] != '\0' && str[i + 1] != '\0' && str[i] == '-')
+	{
+		i++;
+	}
+	while (str != NULL && str[i] != '\0')
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
 
-int split_strings(char *str)
+int	split_strings(char *str)
 {
-    int i;
-    int num_of_str;
-    
-    char **splitted_string;
-    
-    splitted_string = ft_split(str, ' ');
-    
-    i = 0;
-    num_of_str = 0;
-    while (splitted_string[i] != NULL)
-    {
-        if (is_str_number(splitted_string[i]) == 0)
-        {
-            ft_free_2d(splitted_string);
-            return(0);
-        }
-        i++;
-    }
-    num_of_str = i;
-    ft_free_2d(splitted_string);
-    return(num_of_str);
+	int		i;
+	int		num_of_str;
+	char	**splitted_string;
+
+	splitted_string = ft_split(str, ' ');
+	i = 0;
+	num_of_str = 0;
+	while (splitted_string[i] != NULL)
+	{
+		if (is_str_number(splitted_string[i]) == 0)
+		{
+			ft_free_2d(splitted_string);
+			return (-1);
+		}
+		i++;
+	}
+	num_of_str = i;
+	ft_free_2d(splitted_string);
+	return (num_of_str);
 }
 
-long *build_array_of_numbers(int size, int argc, char **argv)
+long	*build_array_of_numbers(int size, int argc, char **argv)
 {
-    long *num;
-    int i;
-    int j;
-    int k;
-    char **splitted_string;
-    
-    num = malloc(size * sizeof(long));
-    if (num == NULL)
-        return (NULL);
-    k = 0;
-    j = 1;
-    while (j < argc)
-    {
-        splitted_string = ft_split(argv[j], ' ');
-        i = 0;
-        while (splitted_string[i] != NULL)
-        {
-            num[k] = ft_atoi_long(splitted_string[i]);
-            k++;
-            i++;
-        }
-        ft_free_2d(splitted_string);
-        j++;
-    }
-    return(num);
+	long	*num;
+	int		i;
+	int		j;
+	int		k;
+	char	**splitted_string;
+
+	num = malloc(size * sizeof(long));
+	if (num == NULL)
+		return (NULL);
+	k = 0;
+	j = 1;
+	while (j < argc)
+	{
+		splitted_string = ft_split(argv[j], ' ');
+		i = 0;
+		while (splitted_string[i] != NULL)
+		{
+			num[k] = ft_atoi_long(splitted_string[i]);
+			k++;
+			i++;
+		}
+		ft_free_2d(splitted_string);
+		j++;
+	}
+	return (num);
 }
 
-int check_for_duplicates(long *array, int size)
+int	check_for_duplicates(long *array, int size)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    if (array == NULL)
-        return (0);
-        
-    i = 0;
-    while (i < size)
-    {
-        j = i + 1;
-        while (j < size)
-        {
-            if (array[i] == array[j]) 
-            {
-                return (0);
-            }   
-            j++; 
-        }
-        i++;
-    }
-    return (1);
+	if (array == NULL)
+		return (0);
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (array[i] == array[j])
+			{
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 // t_stack *set_stack(int *array, int *index_array, int size)
@@ -138,265 +133,32 @@ int check_for_duplicates(long *array, int size)
 //             current->next = NULL;
 //         else
 //         {
-//             current->next = malloc (1 *sizeof(t_node)); // TODO: free function for all nodes
-//             current = current->next;   
+//             current->next = malloc (1 *sizeof(t_node));
+	// TODO: free function for all nodes
+//             current = current->next;
 //         }
 //         i++;
 //         (stack->size)++;
 //     }
 //     stack->tail = current;
-    
+
 //     return (stack);
 // }
 
-int *sort_array(long *array, int size)
+int	*sort_array(long *array, int size)
 {
-    int *sorted_array;
-    int i;
+	int	*sorted_array;
+	int	i;
 
-    sorted_array = malloc(size * sizeof(int));
-    if (sorted_array == NULL)
-        return (NULL);
-
-    i = 0;
-    while (i < size)
-    {
-        sorted_array[i] = array[i];
-        i++;
-    }
-    
-    bubble_sort(sorted_array, size);
-    
-    return (sorted_array);
-}
-
-void bubble_sort(int *arr, int n)
-{
-    int i;
-    int temp;
-    int swapped;
-
-    if (arr == NULL || n <= 1)
-        return;
-    
-    swapped = 1;
-    while (swapped == 1)
-    {
-        swapped = 0;
-        i = 0;
-        while (i < n - 1)
-        {
-            if (arr[i] > arr[i + 1])
-            {
-                temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
-                swapped = 1;
-            }
-            i++;
-        }
-        n--;
-    }
-}
-
-int *assigning_index_based_on_number_size(long *array, int *sorted_array, int size)
-{
-    int *index_array;
-    int i;
-    int j;
-    
-    index_array = malloc(size * sizeof(int));
-    if (index_array == NULL)
-        return (NULL);
-        
-    i = 0;
-    while (i < size)
-    {
-        j = 0;
-        while (j < size)
-        {
-            if (array[i] == sorted_array[j])
-            {
-               index_array[i] = j;
-            }
-            j++;
-        }
-        i++;
-    }
-    return(index_array);
-}
-
-int check_str_digits_size(int argc, char **argv)
-{
-    int i; 
-    int size;
-    int num_of_str;
-    
-    i = 1;
-    size = 0;
-    while (i < argc)
-    {
-       num_of_str = split_strings(argv[i]);
-        
-        if (num_of_str == 0)
-        {
-            return (0);
-        }
-        size = size + num_of_str;
-        i++;
-    }
-    return(size);
-}
-
-int check_limits_int(long *array, int size)
-{
-    int i;
-
-    i = 0;
-    while (i < size)
-    {
-        if (array[i] > INT_MAX || array[i] < INT_MIN)
-        {
-            return (0);
-        }
-        i++;
-    }
-    
-    return (1);
-}
-
-t_stack *parsing(int argc, char **argv) 
-{
-    int size;
-    long *array;
-    int duplicate;
-    int *sorted_array;
-    int *index_array;
-    t_stack *stack;
-
-    size = check_str_digits_size(argc, argv);
-    if (size == 0)
-    {
-        return (NULL);
-    }
-    array = build_array_of_numbers(size, argc, argv);
-    if (array == NULL)
-    {
-        return (NULL);
-    }
-    if (check_limits_int(array, size) == 0)
-    {
-        free(array);
-        return (NULL);
-    }
-    
-    // // print_array_int("array", array, size);
-    duplicate = check_for_duplicates(array, size);
-    if (duplicate == 0)
-    {
-        free(array);
-        return (NULL);
-    }
-    sorted_array = sort_array(array, size);
-    if (sorted_array == NULL)
-    {
-        free(array);
-        return (NULL);
-    }
-    // print_array_int("sorted array", sorted_array, size);
-    index_array = assigning_index_based_on_number_size(array, sorted_array, size);
-    if (index_array == NULL)
-    {
-        free(array);
-        free(sorted_array);
-        return (NULL);
-    }
-    // print_array_int("index array", index_array, size);
-    
-    stack = set_stack(array, index_array, size);
-    free(array);
-    free(sorted_array);
-    free(index_array);
-    if (stack == NULL)
-    {
-        return (NULL);
-    }
-
-    // print_stack(stack, "stack_a");
-
-    return (stack);
-}
-
-t_stack *get_empty_stack()
-{
-   t_stack *stack;
-    
-    stack = malloc(1 *sizeof(t_stack));
-    if (stack == NULL)
-        return (NULL);
-        
-    stack->head = NULL;
-    stack->tail = NULL;
-    stack->size = 0;
-    
-    return(stack);
-}
-
-t_node *get_node (int value, int index)
-{
-    t_node *node;
-    
-    node = malloc (1 * sizeof(t_node));
-    if (!node)
-    {
-        return (NULL);
-    } 
-
-    node->value = value;
-    node->index = index;
-    node->prev = NULL;
-    node->next = NULL;
-
-    return (node);   
-}
-
-t_stack *set_stack(long *array, int *index_array, int size)
-{
-    t_stack *stack;
-    t_node *node;
-    
-    stack = get_empty_stack();
-    if (!stack)
-    {
-        return (NULL);
-    }
-
-    while(size > 0)
-    {
-        node = get_node(array[size - 1], index_array[size - 1]);
-        if (!node)
-        {
-            return (NULL);
-        }
-        put_node_in_stack(stack, node);
-        size--;
-    }
-    return (stack);
-}
-
-void put_node_in_stack(t_stack *stack, t_node *node)
-{
-    if (stack->size == 0)
-    {
-        stack->head = node;
-        stack->tail = node;
-        (stack->size)++;
-    }
-    else
-    {
-        node->next = stack->head;
-        stack->head->prev = node;
-        stack->head = node;
-        (stack->size)++;
-    }
+	sorted_array = malloc(size * sizeof(int));
+	if (sorted_array == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		sorted_array[i] = array[i];
+		i++;
+	}
+	bubble_sort(sorted_array, size);
+	return (sorted_array);
 }

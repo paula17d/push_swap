@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:03:35 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/21 06:08:10 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/28 02:42:30 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 // shifts all elements in stack A down one position.
 // the last element becomes the first.
-void rra(t_stack *stack_a, int print)
+void	rra(t_stack *stack_a, int print)
 {
-	t_node *node;
-	
+	t_node	*node;
+
 	if (stack_a->size > 1)
 	{
-		node = extract_node(stack_a, BOTTOM);
-		insert_node(stack_a, node, TOP);	
+		node = extract_node_bottom(stack_a);
+		insert_node_top(stack_a, node);	
 	}
 	if (print == 1)
 	{
@@ -29,14 +29,14 @@ void rra(t_stack *stack_a, int print)
 	}
 }
 
-void rrb(t_stack *stack_b, int print)
+void	rrb(t_stack *stack_b, int print)
 {
-	t_node *node;
-	
+	t_node	*node;
+
 	if (stack_b->size > 1)
 	{
-		node = extract_node(stack_b, BOTTOM);
-		insert_node(stack_b, node, TOP);
+		node = extract_node_bottom(stack_b);
+		insert_node_top(stack_b, node);
 	}
 	if (print == 1)
 	{
@@ -44,7 +44,7 @@ void rrb(t_stack *stack_b, int print)
 	}
 }
 
-void rrr(t_stack *stack_a, t_stack *stack_b)
+void	rrr(t_stack *stack_a, t_stack *stack_b)
 {
 	rra(stack_a, 0);
 	rrb(stack_b, 0);

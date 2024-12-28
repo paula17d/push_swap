@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 12:49:48 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/21 04:11:56 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/28 02:46:32 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,36 +28,32 @@
 // }t_node;
 
 
-void insert_node_top()
+void insert_node_top(t_stack *stack, t_node *inserted_node)
 {
-	
-}
-
-
-void insert_node_bottom()
-{
-	
-}
-
-
-void insert_node(t_stack *stack, t_node *inserted_node, int position) // in 2 aufteilen: insert_node_top & insert_node_bottom
-{	
 	if (stack->size == 0)
 	{
 		stack->head = inserted_node;
 		stack->tail = inserted_node;
 	}
-	
-	// at top (head)
-	else if (position == TOP)
+	else
 	{
 		inserted_node->next = stack->head;
 		stack->head->prev = inserted_node;
 		stack->head = inserted_node;
 	}
 
-	// at bottom (tail)
-	else if (position == BOTTOM)
+	stack->size++;
+}
+
+void insert_node_bottom(t_stack *stack, t_node *inserted_node)
+{
+	if (stack->size == 0)
+	{
+		stack->head = inserted_node;
+		stack->tail = inserted_node;
+	}
+	
+	else
 	{
 		inserted_node->prev = stack->tail;
 		stack->tail->next = inserted_node;
@@ -67,49 +63,130 @@ void insert_node(t_stack *stack, t_node *inserted_node, int position) // in 2 au
 	stack->size++;
 }
 
-t_node *extract_node(t_stack *stack, int position) // in 2 aufteilen: extract_node_top & extract_node_bottom
+
+// void insert_node(t_stack *stack, t_node *inserted_node, int position) // in 2 aufteilen: insert_node_top & insert_node_bottom
+// {	
+// 	if (stack->size == 0)
+// 	{
+// 		stack->head = inserted_node;
+// 		stack->tail = inserted_node;
+// 	}
+	
+// 	// at top (head)
+// 	else if (position == TOP)
+// 	{
+// 		inserted_node->next = stack->head;
+// 		stack->head->prev = inserted_node;
+// 		stack->head = inserted_node;
+// 	}
+
+// 	// at bottom (tail)
+// 	else if (position == BOTTOM)
+// 	{
+// 		inserted_node->prev = stack->tail;
+// 		stack->tail->next = inserted_node;
+// 		stack->tail = inserted_node;
+// 	}
+	
+// 	stack->size++;
+// }
+
+
+
+t_node *extract_node_top(t_stack *stack)
 {
-	// removes node from top (head) or bottom (tail) and returns it
 	t_node *extracted_node;
 	
 	extracted_node = NULL;
+	
+	extracted_node = stack->head;
+	stack->head = extracted_node->next;
 
-	if (position == TOP)
+	if (stack->size == 1)
 	{
-		extracted_node = stack->head;
-		stack->head = extracted_node->next;
-
-		if (stack->size == 1)
-		{
-			stack->tail = NULL;
-		}
-		else 
-		{
-			stack->head->prev = NULL;
-		}
+		stack->tail = NULL;
+	}
+	else 
+	{
+		stack->head->prev = NULL;
 	}
 	
-	else if (position == BOTTOM)
-	{
-
-		extracted_node = stack->tail;
-		stack->tail = extracted_node->prev;
-		stack->tail->next = NULL; 
-		if (stack->size == 1)
-		{
-			stack->head = NULL;
-		}
-		else 
-		{
-			stack->tail->next = NULL;
-		}
-	}
 	extracted_node->prev = NULL;
 	extracted_node->next = NULL;
 	stack->size--;
 	
 	return(extracted_node);
 }
+
+
+t_node *extract_node_bottom(t_stack *stack)
+{
+	t_node *extracted_node;
+	
+	extracted_node = NULL;
+
+	extracted_node = stack->tail;
+	stack->tail = extracted_node->prev;
+	stack->tail->next = NULL; 
+	if (stack->size == 1)
+	{
+		stack->head = NULL;
+	}
+	else 
+	{
+		stack->tail->next = NULL;
+	}
+
+	extracted_node->prev = NULL;
+	extracted_node->next = NULL;
+	stack->size--;
+	
+	return(extracted_node);
+}
+
+// t_node *extract_node(t_stack *stack, int position) // in 2 aufteilen: extract_node_top & extract_node_bottom
+// {
+// 	// removes node from top (head) or bottom (tail) and returns it
+// 	t_node *extracted_node;
+	
+// 	extracted_node = NULL;
+
+// 	if (position == TOP)
+// 	{
+// 		extracted_node = stack->head;
+// 		stack->head = extracted_node->next;
+
+// 		if (stack->size == 1)
+// 		{
+// 			stack->tail = NULL;
+// 		}
+// 		else 
+// 		{
+// 			stack->head->prev = NULL;
+// 		}
+// 	}
+	
+// 	else if (position == BOTTOM)
+// 	{
+
+// 		extracted_node = stack->tail;
+// 		stack->tail = extracted_node->prev;
+// 		stack->tail->next = NULL; 
+// 		if (stack->size == 1)
+// 		{
+// 			stack->head = NULL;
+// 		}
+// 		else 
+// 		{
+// 			stack->tail->next = NULL;
+// 		}
+// 	}
+// 	extracted_node->prev = NULL;
+// 	extracted_node->next = NULL;
+// 	stack->size--;
+	
+// 	return(extracted_node);
+// }
 
 t_node *create_node(int value, int index)
 {
@@ -128,5 +205,3 @@ t_node *create_node(int value, int index)
 	
 	return (new_node);	
 }
-
-// delete stack function
