@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:55:27 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/10/28 16:50:41 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/27 01:33:04 by pauladretta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ static int	ending_point(const char *s, const char *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
 	int		start;
 	int		end;
 	char	*result;
 	size_t	trimmed_len;
 
-	i = 0;
 	start = 0;
 	if (!s1 || !set)
 		return (NULL);

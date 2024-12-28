@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:30:11 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/21 03:40:02 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:40:43 by pauladretta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ int is_str_number(char *str)
     
     if (str == NULL)
         return (0);
-
+    
     i = 0;
+    if (str != NULL && str[i] != '\0'  && str[i + 1] != '\0' && str[i] == '-')
+    {
+        i++;
+    }
+    
     while (str != NULL && str[i] != '\0')
     {
         if (!(str[i] >= '0' && str[i] <= '9'))
@@ -56,15 +61,15 @@ int split_strings(char *str)
     return(num_of_str);
 }
 
-int *build_array_of_numbers(int size, int argc, char **argv)
+long *build_array_of_numbers(int size, int argc, char **argv)
 {
-    int *num;
+    long *num;
     int i;
     int j;
     int k;
     char **splitted_string;
     
-    num = malloc(size * sizeof(int));
+    num = malloc(size * sizeof(long));
     if (num == NULL)
         return (NULL);
     k = 0;
@@ -75,7 +80,7 @@ int *build_array_of_numbers(int size, int argc, char **argv)
         i = 0;
         while (splitted_string[i] != NULL)
         {
-            num[k] = atoi(splitted_string[i]);
+            num[k] = ft_atoi_long(splitted_string[i]);
             k++;
             i++;
         }
@@ -85,7 +90,7 @@ int *build_array_of_numbers(int size, int argc, char **argv)
     return(num);
 }
 
-int check_for_duplicates(int *array, int size)
+int check_for_duplicates(long *array, int size)
 {
     int i;
     int j;
@@ -144,7 +149,7 @@ int check_for_duplicates(int *array, int size)
 //     return (stack);
 // }
 
-int *sort_array(int *array, int size)
+int *sort_array(long *array, int size)
 {
     int *sorted_array;
     int i;
@@ -194,7 +199,7 @@ void bubble_sort(int *arr, int n)
     }
 }
 
-int *assigning_index_based_on_number_size(int *array, int *sorted_array, int size)
+int *assigning_index_based_on_number_size(long *array, int *sorted_array, int size)
 {
     int *index_array;
     int i;
@@ -243,10 +248,27 @@ int check_str_digits_size(int argc, char **argv)
     return(size);
 }
 
-t_stack *parsing(int argc, char **argv) // TODO: need free function for all // need to make smaller
+int check_limits_int(long *array, int size)
+{
+    int i;
+
+    i = 0;
+    while (i < size)
+    {
+        if (array[i] > INT_MAX || array[i] < INT_MIN)
+        {
+            return (0);
+        }
+        i++;
+    }
+    
+    return (1);
+}
+
+t_stack *parsing(int argc, char **argv) 
 {
     int size;
-    int *array;
+    long *array;
     int duplicate;
     int *sorted_array;
     int *index_array;
@@ -262,10 +284,17 @@ t_stack *parsing(int argc, char **argv) // TODO: need free function for all // n
     {
         return (NULL);
     }
-    print_array_int("array", array, size);
+    if (check_limits_int(array, size) == 0)
+    {
+        free(array);
+        return (NULL);
+    }
+    
+    // // print_array_int("array", array, size);
     duplicate = check_for_duplicates(array, size);
     if (duplicate == 0)
     {
+        free(array);
         return (NULL);
     }
     sorted_array = sort_array(array, size);
@@ -274,7 +303,7 @@ t_stack *parsing(int argc, char **argv) // TODO: need free function for all // n
         free(array);
         return (NULL);
     }
-    print_array_int("sorted array", sorted_array, size);
+    // print_array_int("sorted array", sorted_array, size);
     index_array = assigning_index_based_on_number_size(array, sorted_array, size);
     if (index_array == NULL)
     {
@@ -282,17 +311,18 @@ t_stack *parsing(int argc, char **argv) // TODO: need free function for all // n
         free(sorted_array);
         return (NULL);
     }
-    print_array_int("index array", index_array, size);
+    // print_array_int("index array", index_array, size);
     
     stack = set_stack(array, index_array, size);
+    free(array);
+    free(sorted_array);
+    free(index_array);
     if (stack == NULL)
     {
-        free(array);
-        free(sorted_array);
-        free(index_array);
         return (NULL);
     }
-    print_stack(stack, "stack_a");
+
+    // print_stack(stack, "stack_a");
 
     return (stack);
 }
@@ -330,7 +360,7 @@ t_node *get_node (int value, int index)
     return (node);   
 }
 
-t_stack *set_stack(int *array, int *index_array, int size)
+t_stack *set_stack(long *array, int *index_array, int size)
 {
     t_stack *stack;
     t_node *node;

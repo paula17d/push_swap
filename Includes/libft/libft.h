@@ -6,7 +6,7 @@
 /*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:27:11 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/11 04:03:18 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/26 20:25:12 by pauladretta      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_uitoa(unsigned int n);
 void    ft_free_2d(char **matrix);
 void    ft_swap(int *a, int *b);
+long	ft_atoi_long(const char *str);
 
 #endif
