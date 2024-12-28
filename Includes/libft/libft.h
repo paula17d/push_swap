@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pauladrettas <pauladrettas@student.42.f    +#+  +:+       +#+        */
+/*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:27:11 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/26 20:25:12 by pauladretta      ###   ########.fr       */
+/*   Updated: 2024/12/28 06:03:45 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 int		ft_isalpha(int x);
 int		ft_isdigit(int x);
@@ -41,7 +41,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t count, size_t size);
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	**ft_split(char const *s, char c);
 char	*ft_strdup(const char *s1);
@@ -51,8 +51,8 @@ char	*ft_itoa(int n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_uitoa(unsigned int n);
-void    ft_free_2d(char **matrix);
-void    ft_swap(int *a, int *b);
+void	ft_free_2d(char **matrix);
+void	ft_swap(int *a, int *b);
 long	ft_atoi_long(const char *str);
 
 #endif

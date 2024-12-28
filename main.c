@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:55:02 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/28 05:58:04 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/28 06:18:24 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,19 @@ int	main(int argc, char **argv)
 	size = -1;
 	stack_a = parsing(argc, argv, &size, -1);
 	stack_b = get_empty_stack();
-	if (size == 0) 
+	if (size == 0)
 	{
 		free_stacks(stack_a, stack_b);
 		write(2, "", 1);
-		// system ("leaks push_swap");
 		return (1);
 	}
 	if (stack_a == NULL || stack_b == NULL)
 	{
 		free_stacks(stack_a, stack_b);
 		write(2, "Error\n", 6);
-		// system ("leaks push_swap");
 		return (1);
 	}
-    sort(stack_a, stack_b);
+	sort(stack_a, stack_b);
 	free_stacks(stack_a, stack_b);
-	// system ("leaks push_swap");
 	return (0);
 }

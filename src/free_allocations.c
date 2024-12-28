@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 03:24:47 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/28 04:32:13 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/28 06:05:48 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	free_stack(t_stack *stack)
 
 void	free_stacks(t_stack *stack_a, t_stack *stack_b)
 {
-    if (stack_a != NULL)
-        free_stack(stack_a);
-    if (stack_b != NULL)
-	    free_stack(stack_b);
+	if (stack_a != NULL)
+		free_stack(stack_a);
+	if (stack_b != NULL)
+		free_stack(stack_b);
 }

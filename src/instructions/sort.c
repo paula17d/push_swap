@@ -6,13 +6,13 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 01:25:04 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/28 04:43:37 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/28 06:46:53 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../Includes/push_swap.h"
 
-void sort(t_stack *stack_a, t_stack *stack_b)
+void	sort(t_stack *stack_a, t_stack *stack_b)
 {
 	if (!check_if_stack_sorted(stack_a) && stack_a->size > 1)
 	{
@@ -55,13 +55,11 @@ void	sort_3(t_stack *stack_a)
 	{
 		ra(stack_a, 1);
 	}
-	// Otherwise, if the index of thd second # is the biggest , we do rra
 	else if (stack_a->head->next->index > stack_a->head->index
 		&& stack_a->head->next->index > stack_a->head->next->next->index)
 	{
 		rra(stack_a, 1);
 	}
-	// Then, if the  index, we do this.
 	if (stack_a->head->index > stack_a->head->next->index)
 	{
 		sa(stack_a);
@@ -73,8 +71,6 @@ void	sort_4(t_stack *stack_a, t_stack *stack_b)
 	int	distance;
 
 	distance = distance_min_from_top(stack_a, 0);
-	// printf("distance = %d\n", distance);
-	// printf("stack_a size = %d\n", stack_a->size);
 	if (stack_a->size % 2 == 0)
 	{
 		if (distance < stack_a->size / 2)
@@ -99,27 +95,19 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 
 	distance = distance_min_from_top(stack_a, 0);
 	if (distance <= stack_a->size / 2)
-	{
 		while (stack_a->head->index != 0)
 			ra(stack_a, 1);
-	}
 	else
-	{
 		while (stack_a->head->index != 0)
 			rra(stack_a, 1);
-	}
 	pb(stack_a, stack_b);
 	distance = distance_min_from_top(stack_a, 1);
 	if (distance < stack_a->size / 2)
-	{
 		while (stack_a->head->index != 1)
 			ra(stack_a, 1);
-	}
 	else
-	{
 		while (stack_a->head->index != 1)
 			rra(stack_a, 1);
-	}
 	pb(stack_a, stack_b);
 	sort_3(stack_a);
 	pa(stack_a, stack_b);

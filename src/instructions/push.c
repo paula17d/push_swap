@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 16:03:38 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/28 02:37:59 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/28 06:06:47 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node *node;
+	t_node	*node;
 
 	if (stack_a->size > 0)
 	{
