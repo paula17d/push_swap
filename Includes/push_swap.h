@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 01:24:58 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/28 04:59:05 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/28 22:58:47 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void				radix_sort(t_stack *stack_a, t_stack *stack_b);
 int					check_if_stack_sorted(t_stack *stack_a);
 void				sort_3(t_stack *stack_a);
 void				free_stack(t_stack *stack);
-int					distance_min_from_top(t_stack *stack, int index);
+int					distance_from_top(t_stack *stack, int index);
 void				sort_5(t_stack *stack_a, t_stack *stack_b);
 void				sort_4(t_stack *stack_a, t_stack *stack_b);
 void				insert_node_bottom(t_stack *stack, t_node *inserted_node);

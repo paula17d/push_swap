@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:21:53 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/28 02:58:18 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/29 03:06:06 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,6 @@ int	check_if_stack_sorted(t_stack *stack_a)
 	}
 	return (1);
 }
-
-// static int	calculate_length_of_binary(t_stack *stack_a)
-// {
-// 	int	exponent;
-
-// 	exponent = 0;
-// 	while (1)
-// 	{
-// 		if (stack_a->size <= 1 << exponent)
-// 			return (exponent);
-// 		else
-// 			exponent++;
-// 	}
-// }
 
 int	calculate_length_of_binary(t_stack *stack_a)
 {
@@ -83,51 +69,3 @@ void	radix_sort(t_stack *stack_a, t_stack *stack_b)
 		shifted_bytes++;
 	}
 }
-
-// int	check_if_sorted(t_stack *stack_a)
-// {
-// 	t_node	*current_node;
-
-// 	current_node = stack_a->head;
-// 	while (current_node != NULL)
-// 	{
-// 		if (current_node->next != NULL)
-// 		{
-// 			if (current_node->value > current_node->next->value)
-// 				return (0);
-// 		}
-// 		current_node = current_node->next;
-// 	}
-// 	return (1);
-// }
-
-// static int	calculate_length_of_binary(t_stack *stack_a);
-
-// void	radix_sort(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	int	length_of_binary;
-// 	int	pos_in_binary;
-// 	int	pos_in_stack;
-
-// 	length_of_binary = calculate_length_of_binary(stack_a);
-// 	pos_in_binary = 0;
-// 	while (pos_in_binary < length_of_binary)
-// 	{
-// 		if (check_if_sorted(stack_a))
-// 			return ;
-// 		pos_in_stack = 0;
-// 		while (pos_in_stack < stack_a->size)
-// 		{
-// 			if ((stack_a->head->index >> pos_in_binary & 1) == 0)
-// 				pb(stack_a, stack_b);
-// 			else
-// 			{
-// 				ra(stack_a, 1);
-// 				pos_in_stack++;
-// 			}
-// 		}
-// 		while (0 < stack_b->size)
-// 			pa(stack_a, stack_b);
-// 		pos_in_binary++;
-// 	}
-// }

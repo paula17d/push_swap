@@ -6,37 +6,37 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 02:54:28 by pdrettas          #+#    #+#             */
-/*   Updated: 2024/12/28 04:59:31 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/29 03:35:14 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/push_swap.h"
 
-void	bubble_sort(int *arr, int n)
+void	bubble_sort(int *array, int size)
 {
 	int	i;
 	int	temp;
-	int	swapped;
+	int	flag_swapped;
 
-	if (arr == NULL || n <= 1)
+	if (array == NULL || size <= 1)
 		return ;
-	swapped = 1;
-	while (swapped == 1)
+	flag_swapped = 1;
+	while (flag_swapped == 1)
 	{
-		swapped = 0;
+		flag_swapped = 0;
 		i = 0;
-		while (i < n - 1)
+		while (i < size - 1)
 		{
-			if (arr[i] > arr[i + 1])
+			if (array[i] > array[i + 1])
 			{
-				temp = arr[i];
-				arr[i] = arr[i + 1];
-				arr[i + 1] = temp;
-				swapped = 1;
+				temp = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = temp;
+				flag_swapped = 1;
 			}
 			i++;
 		}
-		n--;
+		size--;
 	}
 }
 
@@ -67,6 +67,9 @@ int	*assigning_index_based_on_number_size(long *array, int *sorted_array,
 	return (index_array);
 }
 
+/*
+checks amount of arguments, 0 if none, -1 if invalid input
+*/
 int	check_str_digits_size(int argc, char **argv)
 {
 	int	i;
@@ -108,31 +111,31 @@ int	check_limits_int(long *array, int size)
 	return (1);
 }
 
-t_stack	*parsing(int argc, char **argv, int *size, int duplicate)
+t_stack	*parsing(int argc, char **argv, int *ptr_size, int duplicate)
 {
 	long	*array;
 	int		*sorted_array;
 	int		*index_array;
 	t_stack	*stack;
 
-	*size = check_str_digits_size(argc, argv);
-	if (*size == 0)
+	*ptr_size = check_str_digits_size(argc, argv);
+	if (*ptr_size == 0 || *ptr_size == -1)
 		return (NULL);
-	array = build_array_of_numbers(*size, argc, argv);
+	array = build_array_of_numbers(*ptr_size, argc, argv);
 	if (array == NULL)
 		return (NULL);
-	if (check_limits_int(array, *size) == 0)
+	if (check_limits_int(array, *ptr_size) == 0)
 		return (free(array), NULL);
-	duplicate = check_for_duplicates(array, *size);
+	duplicate = check_for_duplicates(array, *ptr_size);
 	if (duplicate == 0)
 		return (free(array), NULL);
-	sorted_array = sort_array(array, *size);
+	sorted_array = sort_array(array, *ptr_size);
 	if (sorted_array == NULL)
 		return (free(array), NULL);
 	index_array = assigning_index_based_on_number_size(array, sorted_array,
-			*size);
+			*ptr_size);
 	if (index_array == NULL)
 		return (free(array), free(sorted_array), NULL);
-	stack = set_stack(array, index_array, *size);
+	stack = set_stack(array, index_array, *ptr_size);
 	return (free(array), free(sorted_array), free(index_array), stack);
 }

@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:30:11 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/28 04:49:49 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/29 01:58:07 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,41 +109,6 @@ int	check_for_duplicates(long *array, int size)
 	}
 	return (1);
 }
-
-// t_stack *set_stack(int *array, int *index_array, int size)
-// {
-//     int i;
-//     t_stack *stack;
-//     t_node *current;
-
-//     current = malloc(1 *sizeof(t_node));
-//     if (current == NULL)
-//         return (NULL);
-//     stack = malloc(1 *sizeof(t_stack));
-//     if (stack == NULL)
-//         return (free(current), NULL);
-//     stack->head = current;
-//     stack->size = 0;
-//     i = 0;
-//     while (i < size)
-//     {
-//         current->value = array[i];
-//         current->index = index_array[i];
-//         if (i == size - 1)
-//             current->next = NULL;
-//         else
-//         {
-//             current->next = malloc (1 *sizeof(t_node));
-	// TODO: free function for all nodes
-//             current = current->next;
-//         }
-//         i++;
-//         (stack->size)++;
-//     }
-//     stack->tail = current;
-
-//     return (stack);
-// }
 
 int	*sort_array(long *array, int size)
 {

@@ -6,16 +6,11 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:55:02 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/28 06:18:24 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/29 03:34:41 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Includes/push_swap.h"
-
-// cc -Wall -Wextra -Werror *.c ./src/*.c
-// cc -Wall -Wextra -Werror *.c ./src/*.c ./Includes/libft/*.c
-
-// $>ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_OS $ARG
 
 int	main(int argc, char **argv)
 {
@@ -30,7 +25,7 @@ int	main(int argc, char **argv)
 	{
 		free_stacks(stack_a, stack_b);
 		write(2, "", 1);
-		return (1);
+		return (0);
 	}
 	if (stack_a == NULL || stack_b == NULL)
 	{

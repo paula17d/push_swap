@@ -6,7 +6,7 @@
 /*   By: pdrettas <pdrettas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 01:25:04 by pauladretta       #+#    #+#             */
-/*   Updated: 2024/12/28 06:46:53 by pdrettas         ###   ########.fr       */
+/*   Updated: 2024/12/29 03:37:11 by pdrettas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-int	distance_min_from_top(t_stack *stack, int index)
+int	distance_from_top(t_stack *stack, int index)
 {
 	t_node	*current;
 	int		distance;
 
+	if (stack == NULL || stack->size == 0 || index >= stack->size || index < 0)
+		return (-1);
 	distance = 0;
 	current = stack->head;
 	while (1)
@@ -70,19 +72,16 @@ void	sort_4(t_stack *stack_a, t_stack *stack_b)
 {
 	int	distance;
 
-	distance = distance_min_from_top(stack_a, 0);
-	if (stack_a->size % 2 == 0)
+	distance = distance_from_top(stack_a, 0);
+	if (distance < stack_a->size / 2)
 	{
-		if (distance < stack_a->size / 2)
-		{
-			while (stack_a->head->index != 0)
-				ra(stack_a, 1);
-		}
-		else
-		{
-			while (stack_a->head->index != 0)
-				rra(stack_a, 1);
-		}
+		while (stack_a->head->index != 0)
+			ra(stack_a, 1);
+	}
+	else
+	{
+		while (stack_a->head->index != 0)
+			rra(stack_a, 1);
 	}
 	pb(stack_a, stack_b);
 	sort_3(stack_a);
@@ -93,7 +92,7 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 {
 	int	distance;
 
-	distance = distance_min_from_top(stack_a, 0);
+	distance = distance_from_top(stack_a, 0);
 	if (distance <= stack_a->size / 2)
 		while (stack_a->head->index != 0)
 			ra(stack_a, 1);
@@ -101,7 +100,7 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 		while (stack_a->head->index != 0)
 			rra(stack_a, 1);
 	pb(stack_a, stack_b);
-	distance = distance_min_from_top(stack_a, 1);
+	distance = distance_from_top(stack_a, 1);
 	if (distance < stack_a->size / 2)
 		while (stack_a->head->index != 1)
 			ra(stack_a, 1);
